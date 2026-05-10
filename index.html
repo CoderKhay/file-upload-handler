@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    <input type="file" id="fileInput" />
+    <button id="uploadBtn">Upload</button>
+    <p id="status"></p>
+    <script>
+      const button = document.getElementById("uploadBtn");
+      const input = document.getElementById("fileInput");
+      const status = document.getElementById("status");
+
+      button.addEventListener("click", async () => {
+        const file = input.files[0];
+
+        if (!file) {
+          status.textContent = "Please select a file first";
+          return;
+        }
+
+        const response = await fetch("http://localhost:3000/upload", {
+          method: "POST",
+          headers: {
+            "x-file-name": file.name,
+            "content-type": file.type,
+          },
+          body: file,
+        });
+
+        const message = await response.text();
+        if (!message) {
+          status.textContent = "Uploading...";
+          return;
+        }
+        status.textContent = message;
+      });
+    </script>
+  </body>
+</html>
