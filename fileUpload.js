@@ -55,7 +55,7 @@ const server = http.createServer((req, res) => {
       req.pipe(writer);
       writer.on("finish", () => {
         res.writeHead(200, { "content-type": "text/plain" });
-        res.end("File update successful");
+        res.end("File upload successful");
       });
     } catch (err) {
       console.log(`Error creating directory ${err.message}`);
