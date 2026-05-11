@@ -23,14 +23,17 @@
           return;
         }
 
-        const response = await fetch("http://localhost:3000/upload", {
-          method: "POST",
-          headers: {
-            "x-file-name": file.name,
-            "content-type": file.type,
+        const response = await fetch(
+          "https://file-upload-handler.onrender.com/upload",
+          {
+            method: "POST",
+            headers: {
+              "x-file-name": file.name,
+              "content-type": file.type,
+            },
+            body: file,
           },
-          body: file,
-        });
+        );
 
         const message = await response.text();
         if (!message) {
