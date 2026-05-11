@@ -23,7 +23,7 @@ const server = http.createServer((req, res) => {
       });
       console.log("Directory created successfully");
       const fileName = path.basename(
-        req.headers["x-file-name"] || `upload-${Date.now()}`,
+        req.headers["x-file-name"] || `upload-${Date.now().fileName}`,
       );
       const writer = fs.createWriteStream(
         path.join(fileUrl, "uploads", fileName),
