@@ -4,7 +4,7 @@
   "description": "",
   "license": "ISC",
   "author": "coderKhay",
-  "type": "commonjs",
+  "type": "module",
   "main": "fileUpload.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
