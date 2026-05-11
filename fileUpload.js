@@ -16,6 +16,10 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (req.method === "GET" && req.url === "/") {
+    fs.createReadStream(path.join(fileUrl, "index.html")).pipe(res);
+  }
+
   if (req.method === "POST" && req.url === "/upload") {
     try {
       fs.mkdirSync(path.join(fileUrl, "uploads"), {
