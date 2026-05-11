@@ -2,7 +2,7 @@ import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
 
-const PORT = 3000 || process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const fileUrl = import.meta.dirname;
 
 const server = http.createServer((req, res) => {
@@ -18,9 +18,7 @@ const server = http.createServer((req, res) => {
 
   if (req.method === "GET" && req.url === "/") {
     fs.createReadStream(path.join(fileUrl, "index.html")).pipe(res);
-  }
-
-  if (req.method === "POST" && req.url === "/upload") {
+  } else if (req.method === "POST" && req.url === "/upload") {
     try {
       fs.mkdirSync(path.join(fileUrl, "uploads"), {
         recursive: true,
